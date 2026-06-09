@@ -5,15 +5,27 @@ from groq import Groq
 
 load_dotenv()
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
+def get_groq_api_key() -> str | None:
+    env_key = os.getenv("GROQ_API_KEY")
+    if env_key:
+        return env_key
+
+    try:
+        import streamlit as st
+
+        return st.secrets.get("GROQ_API_KEY")
+    except Exception:
+        return None
 
 
 def ask_groq(prompt: str) -> str:
-    if not GROQ_API_KEY:
-        return "GROQ_API_KEY is not configured. Set it in your .env file."
+    api_key = get_groq_api_key()
+    if not api_key:
+        return "GROQ_API_KEY is not configured. Add it in Streamlit secrets or your local .env file."
 
     try:
-        client = Groq(api_key=GROQ_API_KEY)
+        client = Groq(api_key=api_key)
         completion = client.chat.completions.create(
             model="llama-3.1-8b-instant",
             messages=[

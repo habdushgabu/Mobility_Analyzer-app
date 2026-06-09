@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.*
+*.parquet
+*.sqlite3
+*.db
+outputs/sql_results/mobility.db
