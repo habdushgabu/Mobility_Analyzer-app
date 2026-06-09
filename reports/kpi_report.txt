@@ -1,0 +1,7 @@
+CITY MOBILITY KPI REPORT
+=======================
+total_trips: 12669621
+total_revenue: 150295799.95
+avg_distance: 13.54344016210114
+avg_fare: 11.86269107418446
+avg_tip_pct: 0.14830461645753917
